@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ArticlesController {
-    ArticlesModelRepository articlesModelRepository;
+public class ArticleController {
+    ArticleRepository articleRepository;
 
     @Autowired
-    public ArticlesController(ArticlesModelRepository articlesModelRepository) {
-        this.articlesModelRepository = articlesModelRepository;
+    public ArticleController(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
     }
 
     /*view all articles*/
     @GetMapping("/articles")
-    public List <Articles> listAllArticles() {
-        List <Articles> articles = articlesModelRepository.findAll();
+    public List <Article> listAllArticles() {
+        List <Article> articles = articleRepository.findAll();
         return articles;
     }
 
     /*create a new article*/
     @PostMapping("/create")
-    public ResponseEntity<Articles> createArticles(@RequestBody Articles article) {
-        articlesModelRepository.save(article);
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
+        articleRepository.save(article);
         // ResponseEntity is a wrapper around regular http status
         // allows us to set the status of whatever the response would be
         // HttpStatus.Created: one constant of http status. "Created" here means status 201.
@@ -37,8 +37,8 @@ public class ArticlesController {
 
     /*return a specific article based on the provided id.*/
     @GetMapping ("/{id}")
-    public ResponseEntity<Articles> getArticlesByID(@PathVariable Long id) {
-        Articles targetArticle = articlesModelRepository
+    public ResponseEntity<Article> getArticleByID(@PathVariable Long id) {
+        Article targetArticle = articleRepository
                 .findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
         return ResponseEntity.ok(targetArticle);
@@ -46,19 +46,19 @@ public class ArticlesController {
 
     /*update the given article*/
     @PutMapping ("/update/{id}")
-    public  ResponseEntity<Articles> updateArticle(@PathVariable Long id, @RequestBody Articles articleParams) {
-        Articles article = articlesModelRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    public  ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleParams) {
+        Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         articleParams.setId(id);
-        Articles updatedArticle = articlesModelRepository.save(articleParams);
+        Article updatedArticle = articleRepository.save(articleParams);
         return ResponseEntity.ok(updatedArticle);
     }
 
     /*delete the given article.*/
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Articles> deleteArticle(@PathVariable Long id) {
-        Articles article = articlesModelRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        articlesModelRepository.delete(article);
+    public ResponseEntity<Article> deleteArticle(@PathVariable Long id) {
+        Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        articleRepository.delete(article);
         return ResponseEntity.ok(article); //return the article which was deleted //with http status 204 no_content
 
     }
