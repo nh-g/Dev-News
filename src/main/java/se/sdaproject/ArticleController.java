@@ -16,7 +16,7 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
-    /*view all articles*/
+    /*return all articles*/
     @GetMapping("/articles")
     public List <Article> listAllArticles() {
         List <Article> articles = articleRepository.findAll();
@@ -24,7 +24,7 @@ public class ArticleController {
     }
 
     /*create a new article*/
-    @PostMapping("/create")
+    @PostMapping("/articles")
     public ResponseEntity<Article> createArticle(@RequestBody Article article) {
         articleRepository.save(article);
         // ResponseEntity is a wrapper around regular http status
@@ -36,7 +36,7 @@ public class ArticleController {
     }
 
     /*return a specific article based on the provided id.*/
-    @GetMapping ("/{id}")
+    @GetMapping ("/articles/{id}")
     public ResponseEntity<Article> getArticleByID(@PathVariable Long id) {
         Article targetArticle = articleRepository
                 .findById(id)
@@ -45,7 +45,7 @@ public class ArticleController {
     }
 
     /*update the given article*/
-    @PutMapping ("/update/{id}")
+    @PutMapping ("/articles/{id}")
     public  ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleParams) {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         articleParams.setId(id);
@@ -54,7 +54,7 @@ public class ArticleController {
     }
 
     /*delete the given article.*/
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/articles/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Article> deleteArticle(@PathVariable Long id) {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
