@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 public class ArticleController {
+
     ArticleRepository articleRepository;
 
     @Autowired
@@ -48,7 +49,7 @@ public class ArticleController {
     @PutMapping ("/articles/{id}")
     public  ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleParams) {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        articleParams.setId(id);
+        articleParams.setArticleId(id);
         Article updatedArticle = articleRepository.save(articleParams);
         return ResponseEntity.ok(updatedArticle);
     }
