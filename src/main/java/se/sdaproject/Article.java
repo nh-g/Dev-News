@@ -19,6 +19,9 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List <Comment> comments;
 
+    @ManyToMany(mappedBy = "articles")
+    private List<Topic> topics;
+
     public Article(){
     }
 
@@ -66,5 +69,13 @@ public class Article {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 }
