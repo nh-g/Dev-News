@@ -10,16 +10,32 @@ The project uses these dependencies:
 * Spring JPA
 * PostgreSQL Driver
 
+# Files & Directories
+
+Within the main folder, there is a resource directory containing the Spring application properties file, and a java
+project directory with three packages: API, Model, and Repository, which contain the classes and interfaces required.
+Within the API directory is a package containing exception.
+
+```
+.src/main
+├── resources
+└── se.sdaproject
+    ├── api
+    │   └── exception
+    ├── model
+    └── repository
+```
 ## Setup
-###Docker
+
+### Docker
 `docker-compose up`
-###Gradle
+### Gradle
 On MacOS or Linux
 `./gradlew bootRun`
 On Windows
 `gradle bootRun`
 
-####Postman
+### Postman
 A sample collection of CRUD requests can be found here:
 `https://www.getpostman.com/collections/575d30b03c3dad39230d`
 
