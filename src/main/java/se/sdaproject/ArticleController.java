@@ -49,7 +49,7 @@ public class ArticleController {
     @PutMapping ("/articles/{id}")
     public  ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleParams) {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        articleParams.setArticleId(id);
+        articleParams.setId(id);
         Article updatedArticle = articleRepository.save(articleParams);
         return ResponseEntity.ok(updatedArticle);
     }
@@ -61,7 +61,6 @@ public class ArticleController {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         articleRepository.delete(article);
         return ResponseEntity.ok(article); //return the article which was deleted //with http status 204 no_content
-
     }
 
 }

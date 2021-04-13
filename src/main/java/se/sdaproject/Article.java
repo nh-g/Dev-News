@@ -1,6 +1,7 @@
 package se.sdaproject;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -9,12 +10,13 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long articleId;
+    private Long id;
+
     private String title;
     private String body;
     private String authorName;
 
-    @OneToMany(mappedBy = "articleCommented", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private List <Comment> comments;
 
     public Article(){
@@ -26,12 +28,12 @@ public class Article {
         this.authorName = authorName;
     }
 
-    public Long getArticleId() {
-        return articleId;
+    public Long getId() {
+        return id;
     }
 
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
+    private Long id;
 
     @Column(nullable = false)
     @NotBlank
@@ -22,19 +22,18 @@ public class Comment {
     @NotBlank
     private String authorName;
 
-    @ManyToOne()
+    @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    @NotNull
-    private Article articleCommented;
+    private Article article;
 
-    public Long getCommentId() {
-        return commentId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCommentId(Long commentId) {
-        this.commentId = commentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBody() {
@@ -53,11 +52,11 @@ public class Comment {
         this.authorName = authorName;
     }
 
-    public Article getArticleCommented() {
-        return articleCommented;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleCommented(Article articleCommented) {
-        this.articleCommented = articleCommented;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }
