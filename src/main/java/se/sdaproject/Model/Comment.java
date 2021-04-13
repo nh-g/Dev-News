@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.sdaproject.Model.Article;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Comment {
@@ -14,18 +14,16 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    @NotBlank
+    @JoinColumn(nullable = false)
     private String body;
-
-    @Column(nullable = false)
-    @NotBlank
+    @JoinColumn(nullable = false)
     private String authorName;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
+    @NotNull // a comment always needs to belong to an article
     private Article article;
 
     public Long getId() {
