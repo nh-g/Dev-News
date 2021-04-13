@@ -1,9 +1,13 @@
-package se.sdaproject;
+package se.sdaproject.API;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.sdaproject.Model.Article;
+import se.sdaproject.Model.Comment;
+import se.sdaproject.Repository.ArticleRepository;
+import se.sdaproject.Repository.CommentRepository;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,7 +19,7 @@ public class CommentController {
     ArticleRepository articleRepository;
 
     @Autowired
-    public CommentController(CommentRepository commentRepository, se.sdaproject.ArticleRepository articleRepository) {
+    public CommentController(CommentRepository commentRepository, ArticleRepository articleRepository) {
         this.commentRepository = commentRepository;
         this.articleRepository = articleRepository;
     }

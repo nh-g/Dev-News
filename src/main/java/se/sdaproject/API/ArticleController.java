@@ -1,9 +1,11 @@
-package se.sdaproject;
+package se.sdaproject.API;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.sdaproject.Model.Article;
+import se.sdaproject.Repository.ArticleRepository;
 
 import java.util.List;
 

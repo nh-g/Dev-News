@@ -1,6 +1,7 @@
-package se.sdaproject;
+package se.sdaproject.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import se.sdaproject.Model.Comment;
 
 import java.util.List;
 

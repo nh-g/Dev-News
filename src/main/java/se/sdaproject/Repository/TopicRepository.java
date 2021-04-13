@@ -1,7 +1,7 @@
-package se.sdaproject;
+package se.sdaproject.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.w3c.dom.stylesheets.LinkStyle;
+import se.sdaproject.Model.Topic;
 
 import java.util.List;
 
