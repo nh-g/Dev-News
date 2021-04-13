@@ -6,21 +6,14 @@ import javax.persistence.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @ManyToOne
-    private Article articleCommented;
-
     private Long commentId;
+
+
     private String body;
     private String authorName;
 
-    public se.sdaproject.Article getArticleCommented() {
-        return articleCommented;
-    }
-
-    public void setArticleCommented(se.sdaproject.Article articleCommented) {
-        this.articleCommented = articleCommented;
-    }
+    @ManyToOne()
+    private Article articleCommented;
 
     public Long getCommentId() {
         return commentId;
@@ -44,5 +37,13 @@ public class Comment {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public Article getArticleCommented() {
+        return articleCommented;
+    }
+
+    public void setArticleCommented(Article articleCommented) {
+        this.articleCommented = articleCommented;
     }
 }
