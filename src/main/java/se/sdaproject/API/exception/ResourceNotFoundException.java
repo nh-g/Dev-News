@@ -1,4 +1,4 @@
-package se.sdaproject.API;
+package se.sdaproject.API.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
